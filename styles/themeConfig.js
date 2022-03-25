@@ -3,11 +3,11 @@ import { createGlobalStyle } from "styled-components";
 export const theme = {
   colors: {
     black: "#000",
-    white: "fff",
-    yellow: "F8AF23",
+    white: "#fff",
+    yellow: "#F8AF23",
     darkTurqoise: "#005D69",
-    lightTurqoise: "26A1B1",
-    pink: "FF00C7",
+    lightTurqoise: "#26A1B1",
+    pink: "#FF00C7",
   },
   fonts: {
     family: {
