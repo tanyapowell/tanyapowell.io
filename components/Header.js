@@ -16,16 +16,20 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: ${(props) => props.showMobileMenu === false && "16px"};
 `;
 
 const List = styled.ul`
   list-style: none;
   display: flex;
-  justify-content: space-evenly;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
 
   @media (min-width: 768px) {
     flex-direction: row;
+    justify-content: space-evenly;
     width: 60%;
   }
 `;
@@ -36,23 +40,35 @@ const Logo = styled.div`
   border: 5px solid ${(props) => props.theme.colors.pink};
 `;
 
+const MobileMenuContainer = styled.div`
+  background: ${(props) => props.theme.colors.yellow};
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+
 const Header = () => {
   const { isMobile } = useIsMobile();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   return (
-    <StyledHeader>
+    <StyledHeader showMobileMenu={showMobileMenu}>
       {isMobile ? (
-        <>
-          <Logo />
-          <div
-            onClick={() => {
-              setShowMobileMenu(!showMobileMenu);
-            }}
-          >
-            <Menu />
-          </div>
-        </>
+        !showMobileMenu && (
+          <>
+            <Logo />
+            <div
+              onClick={() => {
+                setShowMobileMenu(true);
+              }}
+            >
+              <Menu />
+            </div>
+          </>
+        )
       ) : (
         <>
           <List>
@@ -65,11 +81,15 @@ const Header = () => {
       )}
 
       {isMobile && showMobileMenu && (
-        <List>
-          {menuItems.map((item) => (
-            <li key={item}>{item.label}</li>
-          ))}
-        </List>
+        <MobileMenuContainer>
+            <button onClick={() => setShowMobileMenu(false)}>Close Me</button>
+            <Moon />
+          <List>
+            {menuItems.map((item) => (
+              <li key={item}>{item.label}</li>
+            ))}
+          </List>
+        </MobileMenuContainer>
       )}
     </StyledHeader>
   );
