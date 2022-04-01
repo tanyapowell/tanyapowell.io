@@ -5,7 +5,9 @@
       "components/*": ["components/*"],
       "hooks/*": ["hooks/*"],
       "content/*": ["content/*"],
-      "styles/*": ["styles/*"]
+      "styles/*": ["styles/*"],
+      "utils/*": ["utils/*"],
+      "models/*": ["models/*"]
     }
   }
 }
