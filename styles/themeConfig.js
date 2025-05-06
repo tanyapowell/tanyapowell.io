@@ -30,5 +30,6 @@ export const GlobalStyles = createGlobalStyle`
   }
   body {
     font-family: ${theme.fonts.family.body};
+    margin: 0;
   }
 `;
